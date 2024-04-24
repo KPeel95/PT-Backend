@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React App with Front-End Execution Test</title>
+  </head>
+  <body>
+    <h1> Example API functionality </h1>
+  <div>
+    <button onclick="fetch('/api/products/').then(response => response.json()).then(data => console.log(data))">Console log all products</button>
+  </div>
+  <div>
+    Create a ID Variable to search the DB for: <input id="input" type="text" />
+    Use that variable within a new fetch
+    <button onclick="fetch('/api/products/' + document.getElementById('input').value).then(response => response.json()).then(data => console.log(data))">Console log a specific product by ID</button>
+  </div>
+  <div>
+    Create Name Variable to search the DB with: <input id="name" type="text" />
+    <button onclick="fetch('/api/products/name/' + document.getElementById('name').value).then(response => response.json()).then(data => console.log(data))">Console log a specific product by name</button>
+  </div>
+  <div>
+    Create a new product with the following information:
+    <input id="newName" type="text" placeholder="Name" />
+    <input id="newPrice" type="text" placeholder="Price" />
+    <input id="newQuantity" type="text" placeholder="Quantity" />
+
+    <button onclick="fetch('/api/products/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: document.getElementById('newName').value,
+        quantity: document.getElementById('newPrice').value,
+        price: document.getElementById('newQuantity').value
+      })
+    }).then(response => response.json()).then(data => console.log(data))">Create a new product
+    </button>
+
+  </div>
+  <div>
+  </div>
+  </body>
+</html>
